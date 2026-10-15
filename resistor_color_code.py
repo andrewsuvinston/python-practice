@@ -21,8 +21,7 @@ if a==1:
             f = colour_multiplier[c[2]]
             g = colour_tolerance[c[3]]
             print(f"{(d*10+e)*f} ohms ±{g}%")
-decoder_resistance(colors_digit)
-decoder_resistance(res)
+    decoder_resistance(res)
 else:
     print("working")
         
