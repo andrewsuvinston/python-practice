@@ -2,6 +2,10 @@ colour_digit={"black":0,"brown":1,"red":2,"orange":3,"yellow":4,"green":5,"blue"
 colour_multiplier={"black":1,"brown":10,"red":100,"orange":1000,"yellow":10000,"green":100000,"blue":1000000,"violet":10000000,"grey":100000000,"white":1000000000,"gold":0.1,"silver":0.01}
 colour_tolerance={"brown":1,"red":2,"green":0.5,"blue":0.25,"violet":0.1,"grey":0.05,"gold":5,"silver":10}
 
+colour_digi={0:"black",1:"brown",2:"red",3:"orange",4:"yellow",5:"green",6:"blue",7:"violet",8:"grey",9:"white"}
+colour_multiplie={1:"black",10:"brown",100:"red",1000:"orange",10000:"yellow",100000:"green",1000000:"blue",10000000:"violet",100000000:"grey",1000000000:"white",0.1:"gold",0.01:"silver"}
+colour_toleranc={1:"brown",2:"red",0.5:"green",0.25:"blue",0.1:"violet",0.05:"grey",5:"gold",10:"silver"}
+
 a=int(input('''
 Choose Mode:
 1.decode colors to resistance
@@ -22,7 +26,27 @@ if a==1:
             g = colour_tolerance[c[3]]
             print(f"{(d*10+e)*f} ohms ±{g}%")
     decoder_resistance(res)
+elif a==2:
+    res=input("Enter the Resistance(Eg:4700): ")
+    tol=int(input("Enter the Tolerance(if there is no tolerance then enter NONE): "))
+    def encoder_resistance(colour_string):
+        d=colour_digi[int(res[0])]
+        e=colour_digi[int(res[1])]
+        f=len(res)
+        if f>=2:
+            c=10**(len(res)-2)
+        elif f==1:
+            c=10
+        else:
+            c=1
+        g=colour_multiplie[c]
+        if tol not in colour_toleranc:
+            print("Give the Valid Tolerance, If it has no toleranc give NONE")
+        elif tol=="NONE":
+            return 
+        else:
+            h=colour_toleranc[tol]
+        print(f"{d} {e} {g} {h}")
+    encoder_resistance(res)
 else:
-    print("working")
-        
-              
+    print("Give the Valid Mode")
