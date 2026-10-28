@@ -27,15 +27,19 @@ if a==1:
             print(f"{(d*10+e)*f} ohms ±{g}%")
     decoder_resistance(res)
 elif a==2:
-    res=input("Enter the Resistance(Eg:4700): ")
+    original=input("Enter the Resistance(Eg:4700): ")
     tol=int(input("Enter the Tolerance(if there is no tolerance then enter NONE): "))
     def encoder_resistance(colour_string):
-        d=colour_digi[int(res[0])]
-        e=colour_digi[int(res[1])]
-        f=len(res)
+        d=colour_digi[int(original[0])]
+        orig_len = len(original)
+        if orig_len>=1:
+            e=colour_digi[int(original[1])]
+        else:
+            e=10
         if f>=2:
-            c=10**(len(res)-2)
-        elif f==1:
+            c=10**(len(original)-2)
+        elif orig_len==1:
+            original = original + "0"
             c=10
         else:
             c=1
@@ -47,6 +51,6 @@ elif a==2:
         else:
             h=colour_toleranc[tol]
         print(f"{d} {e} {g} {h}")
-    encoder_resistance(res)
+    encoder_resistance(original)
 else:
     print("Give the Valid Mode")
