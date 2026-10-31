@@ -37,12 +37,18 @@ elif a==2:
             orig_len = len(working)
             e=colour_digi[int(working[1])]
         else:
-            e=colour_digi[int(original[1])]
+            working=original
+            e=colour_digi[int(working[1])]
         d=colour_digi[int(original[0])]
-        g=colour_multiplie[c]
+        represented = (int(working[0]) * 10 + int(working[1])) * c
+        if represented != int(original):
+            print(f"{original} is not representable in 4-band")
+            return
+        else:
+            g=colour_multiplie[c]
         if tol=="none":
             h=""
-        elif tol.isdigit() in colour_toleranc:
+        elif tol.isdigit() and int(tol) in colour_toleranc:
             h=colour_toleranc[int(tol)]
         else:
             print("Give the Valid Tolerance, If it has no toleranc give NONE")
