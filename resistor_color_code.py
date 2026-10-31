@@ -28,28 +28,25 @@ if a==1:
     decoder_resistance(res)
 elif a==2:
     original=input("Enter the Resistance(Eg:4700): ")
-    tol=int(input("Enter the Tolerance(if there is no tolerance then enter NONE): "))
+    tol=input("Enter the Tolerance(if there is no tolerance then enter none): ").lower()
     def encoder_resistance(colour_string):
-        d=colour_digi[int(original[0])]
         orig_len = len(original)
-        if orig_len>=1:
+        c = 10 ** (orig_len - 2)
+        if orig_len==1:
+            working=original+"0"
+            orig_len = len(working)
+            e=colour_digi[int(working[1])]
+        else:
             e=colour_digi[int(original[1])]
-        else:
-            e=10
-        if f>=2:
-            c=10**(len(original)-2)
-        elif orig_len==1:
-            original = original + "0"
-            c=10
-        else:
-            c=1
+        d=colour_digi[int(original[0])]
         g=colour_multiplie[c]
-        if tol not in colour_toleranc:
-            print("Give the Valid Tolerance, If it has no toleranc give NONE")
-        elif tol=="NONE":
-            return 
+        if tol=="none":
+            h=""
+        elif tol.isdigit() in colour_toleranc:
+            h=colour_toleranc[int(tol)]
         else:
-            h=colour_toleranc[tol]
+            print("Give the Valid Tolerance, If it has no toleranc give NONE")
+            return
         print(f"{d} {e} {g} {h}")
     encoder_resistance(original)
 else:
